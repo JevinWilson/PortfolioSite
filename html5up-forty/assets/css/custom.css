@@ -1,0 +1,129 @@
+/* Custom Styles*/
+
+/* Horizontal Contact Section in index.css */
+
+/* Custom styles for horizontal contact section */
+#contact-horizontal {
+	background-color: #1e2449;
+	border-bottom: solid 1px rgba(212, 212, 255, 0.1);
+	padding: 2em 0;
+}
+
+#contact-horizontal .inner {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 3em;
+	max-width: 65em;
+	margin: 0 auto;
+	width: calc(100% - 6em);
+}
+
+#contact-horizontal .contact-method {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+	color: rgba(244, 244, 255, 0.9);
+}
+
+#contact-horizontal .contact-method h3 {
+	margin: 0;
+	font-size: 1em;
+	color: rgba(244, 244, 255, 0.9);
+}
+
+#contact-horizontal .contact-method a {
+	color: rgba(244, 244, 255, 0.9);
+	text-decoration: none;
+}
+
+#contact-horizontal .contact-method a:hover {
+	color: #9bf1ff;
+}
+
+#contact-horizontal .icon {
+	font-size: 1.25em;
+}
+
+@media screen and (max-width: 980px) {
+	#contact-horizontal .inner {
+		flex-direction: column;
+		gap: 1.5em;
+	}
+}
+
+@media screen and (max-width: 736px) {
+	#contact-horizontal .inner {
+		width: calc(100% - 3em);
+	}
+}
+
+/* Dataset Description Table */
+
+.dataset-table {
+    width: 100%;
+    margin: 2em 0;
+    border-collapse: collapse;
+    background-color: rgba(244, 244, 255, 0.02);
+    border: 1px solid rgba(212, 212, 255, 0.1);
+}
+
+.dataset-table th,
+.dataset-table td {
+    padding: 1em;
+    text-align: left;
+    border-bottom: 1px solid rgba(212, 212, 255, 0.1);
+    color: rgba(244, 244, 255, 0.9);
+}
+
+.dataset-table th {
+    background-color: rgba(212, 212, 255, 0.05);
+    font-weight: 600;
+    color: #9bf1ff;
+}
+
+.dataset-table tr:hover {
+    background-color: rgba(212, 212, 255, 0.02);
+}
+
+.dataset-table .column-name {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+/* Tablet and smaller screens */
+@media screen and (max-width: 980px) {
+    #contact-horizontal .inner {
+        flex-direction: column;
+        gap: 1.5em;
+    }
+}
+
+/* Mobile screens */
+@media screen and (max-width: 736px) {
+    #contact-horizontal .inner {
+        width: calc(100% - 3em);
+    }
+    
+    .dataset-table {
+        font-size: 0.9em;
+    }
+    
+    .dataset-table th,
+    .dataset-table td {
+        padding: 0.75em 0.5em;
+    }
+}
+
+/* Extra small screens */
+@media screen and (max-width: 480px) {
+    .dataset-table th,
+    .dataset-table td {
+        padding: 0.5em 0.25em;
+        font-size: 0.85em;
+    }
+}
