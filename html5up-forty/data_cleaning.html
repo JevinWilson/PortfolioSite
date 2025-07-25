@@ -73,40 +73,49 @@
 											<tr>
 												<th>Column Name</th>
 												<th>Description</th>
+												<th>Data Type</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
 												<td class="Column-name">Transaction ID</td>
 												<td>A unique identifier for each transaction. Always present and unique.</td>
+												<td>text</td>
 											</tr>
 											<tr>
 												<td class="Column-name">Item</td>
 												<td>The name of the item purchased. May contain missing or invalid values (e.g., "ERROR").</td>
+												<td>text</td>
 											</tr>
 											<tr>
 												<td class="Column-name">Quantity</td>
 												<td>The quantity of the item purchased. May contain missing or invalid values.</td>
+												<td>int</td>
 											</tr>
 											<tr>
 												<td class="Column-name">Price Per Unit</td>
 												<td>The price of a single unit of the item. May contain missing or invalid values.</td>
+												<td>double</td>
 											</tr>
 											<tr>
 												<td class="Column-name">Total Spent</td>
 												<td>The total amount spent on the transaction. Calculated as Quantity * Price Per Unit.</td>
+												<td>text</td>
 											</tr>
 											<tr>
 												<td class="Column-name">Payment Method</td>
 												<td>The method of payment used. May contain missing or invalid values (e.g., None, "UNKNOWN").</td>
+												<td>text</td>
 											</tr>
 											<tr>
 												<td class="Column-name">Location</td>
 												<td>The location where the transaction occurred. May contain missing or invalid values.</td>
+												<td>text</td>
 											</tr>
 											<tr>
 												<td class="Column-name">Transaction Date</td>
 												<td>The date of the transaction. May contain missing or incorrect values.</td>
+												<td>text</td>
 											</tr>
 										</tbody>
 
