@@ -11,6 +11,63 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			/* Custom styles for horizontal contact section */
+			#contact-horizontal {
+				background-color: #1e2449;
+				border-bottom: solid 1px rgba(212, 212, 255, 0.1);
+				padding: 2em 0;
+			}
+			
+			#contact-horizontal .inner {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 3em;
+				max-width: 65em;
+				margin: 0 auto;
+				width: calc(100% - 6em);
+			}
+			
+			#contact-horizontal .contact-method {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				color: rgba(244, 244, 255, 0.9);
+			}
+			
+			#contact-horizontal .contact-method h3 {
+				margin: 0;
+				font-size: 1em;
+				color: rgba(244, 244, 255, 0.9);
+			}
+			
+			#contact-horizontal .contact-method a {
+				color: rgba(244, 244, 255, 0.9);
+				text-decoration: none;
+			}
+			
+			#contact-horizontal .contact-method a:hover {
+				color: #9bf1ff;
+			}
+			
+			#contact-horizontal .icon {
+				font-size: 1.25em;
+			}
+			
+			@media screen and (max-width: 980px) {
+				#contact-horizontal .inner {
+					flex-direction: column;
+					gap: 1.5em;
+				}
+			}
+			
+			@media screen and (max-width: 736px) {
+				#contact-horizontal .inner {
+					width: calc(100% - 3em);
+				}
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -55,6 +112,27 @@
 						</div>
 					</section>
 
+				<!-- Contact (Horizontal) -->
+					<section id="contact-horizontal">
+						<div class="inner">
+							<div class="contact-method">
+								<span class="icon solid alt fa-envelope"></span>
+								<h3>Email:</h3>
+								<a href="mailto:JAW062701@gmail.com">JAW062701@gmail.com</a>
+							</div>
+							<div class="contact-method">
+								<a href="https://www.linkedin.com/in/jevin-christian-wilson/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a>
+								<h3>LinkedIn:</h3>
+								<a href="https://www.linkedin.com/in/jevin-christian-wilson/">Jevin Wilson</a>
+							</div>
+							<div class="contact-method">
+								<a href="https://github.com/JevinWilson" class="icon brands alt fa-github"><span class="label">GitHub</span></a>
+								<h3>GitHub:</h3>
+								<a href="https://github.com/JevinWilson">JevinWilson</a>
+							</div>
+						</div>
+					</section>
+
 				<!-- Main -->
 					<div id="main">
 
@@ -83,8 +161,8 @@
 										<img src="images/pic03.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="landing.html" class="link">Magna</a></h3>
-										<p>Lorem etiam nullam</p>
+										<h3><a href="landing.html" class="link">Tempus</a></h3>
+										<p>feugiat amet tempus</p>
 									</header>
 								</article>
 								<article>
@@ -92,8 +170,8 @@
 										<img src="images/pic04.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="landing.html" class="link">Ipsum</a></h3>
-										<p>Nisl sed aliquam</p>
+										<h3><a href="landing.html" class="link">Sed etiam facilis</a></h3>
+										<p>Ornare nulla proin odio consequat</p>
 									</header>
 								</article>
 								<article>
@@ -102,7 +180,7 @@
 									</span>
 									<header class="major">
 										<h3><a href="landing.html" class="link">Consequat</a></h3>
-										<p>Ipsum dolor sit amet</p>
+										<p>Ornare nulla proin odio consequat sapien vestibulum ipsum</p>
 									</header>
 								</article>
 								<article>
@@ -131,38 +209,9 @@
 
 					</div>
 
-				<!-- Contact -->
-					<section id="contact">
-						<div class="inner">
-							<section>
-							</section>
-							<section class="split">
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-envelope"></span>
-										<h3>Email</h3>
-										<a href="#">JAW062701@gmail.com</a>
-									</div>
-								</section>
-								<section>
-									<div class="contact-method">
-										<a href="https://www.linkedin.com/in/jevin-christian-wilson/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a>
-										<a href="https://www.linkedin.com/in/jevin-christian-wilson/"><h3>LinkedIn</h3></a>
-									</div>
-								</section>
-								<section>
-									<div class="contact-method">
-										<a href="https://github.com/JevinWilson" class="icon brands alt fa-github"><span class="label">GitHub</span></a>
-										<a href="https://github.com/JevinWilson"><h3>GitHub</h3></a>
-								</section>
-							</section>
-						</div>
-					</section>
-
 				<!-- Footer -->
 					<footer id="footer">
 						<div class="inner">
-							</ul>
 							<ul class="copyright">
 								<li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
 							</ul>
