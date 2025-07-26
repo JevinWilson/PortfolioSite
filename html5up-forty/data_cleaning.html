@@ -64,7 +64,8 @@
 							<section id="one">
 								<div class="inner">
 									<header class="major">
-										<h2>The Data Set Used</h2>
+										<h2>The Data Set Used</h2> 
+										<a href="https://www.kaggle.com/datasets/ahmedmohamed2003/cafe-sales-dirty-data-for-cleaning-training" class="button">View Here</a>
 									</header>
 									<p>The Dirty Cafe Sales dataset contains 10,000 rows of synthetic data representing sales transactions in a cafe. This dataset is intentionally "dirty," with missing values, inconsistent data, and errors introduced to provide a realistic scenario for data cleaning.</p>
 									
@@ -120,57 +121,123 @@
 										</tbody>
 
 									</table>
-									<a href="https://www.kaggle.com/datasets/ahmedmohamed2003/cafe-sales-dirty-data-for-cleaning-training" class="button">View Here</a>
+
 								</div>
 							</section>
 
 						<!-- Two -->
 							<section id="two" class="spotlights">
 								<section>
-									<a href="generic.html" class="image">
-										<img src="images/pic08.jpg" alt="" data-position="center center" />
-									</a>
+									<div class="code-snippet">
+										<pre><code>
+create table dirty_cafe_sales_stagging
+like dirty_cafe_sales;
+
+insert dirty_cafe_sales_stagging
+select *
+from dirty_cafe_sales;
+
+select * 
+from dirty_cafe_sales_stagging; 
+										</code></pre>
+									</div>
 									<div class="content">
 										<div class="inner">
 											<header class="major">
-												<h3>Orci maecenas</h3>
+												<h3>Create Stagging Table</h3>
 											</header>
-											<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
-											<ul class="actions">
-												<li><a href="generic.html" class="button">Learn more</a></li>
-											</ul>
+											<p>In this code snippet I created a copy of the table to edit and stage changes on 
+												to keep the original table/data safe.
+											</p>
 										</div>
 									</div>
 								</section>
 								<section>
-									<a href="generic.html" class="image">
-										<img src="images/pic09.jpg" alt="" data-position="top center" />
-									</a>
+									<div class="code-snippet">
+										<pre><code>
+with duplicate_cte as 
+(
+select *, 
+row_number() over(
+	partition by
+	`Transaction ID`, item, `Total Spent`, `Transaction Date`
+) as row_num
+from dirty_cafe_sales_stagging
+)
+select * 
+from duplicate_cte
+where row_num > 1;
+										</code></pre>
+									</div>
 									<div class="content">
 										<div class="inner">
 											<header class="major">
-												<h3>Rhoncus magna</h3>
+												<h3>Removing Duplicates</h3>
 											</header>
-											<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
-											<ul class="actions">
-												<li><a href="generic.html" class="button">Learn more</a></li>
-											</ul>
+											<p>In this code snippet I checked for duplicates. I created a CTE and partitioned over
+												'Transaction ID', 'item', 'Total Spent', and 'Transaction Date'. If 
+												any rows have the same values in all 4 columns it would increment the 'row_num'
+												column. I then filtered the output to show where 'row_num' is more than 1, 
+												showing a duplicate row, and if there was then I would remove it.
+											</p>
 										</div>
 									</div>
 								</section>
 								<section>
-									<a href="generic.html" class="image">
-										<img src="images/pic10.jpg" alt="" data-position="25% 25%" />
-									</a>
+									<div class="code-snippet">
+										<pre><code>
+-- 1. 
+update dirty_cafe_sales_stagging
+set `Transaction ID` = trim(`Transaction ID`),
+Item = trim(Item),
+`Price Per Unit`=trim(`Price Per Unit`),
+`Total Spent`=trim(`Total Spent`),
+`Payment Method`=trim(`Payment Method`),
+Location=trim(Location),
+`Transaction Date`=trim(`Transaction Date`);
+--2.
+update dirty_cafe_sales_stagging
+set `Transaction Date` = null 
+where `Transaction Date` = 'ERROR' 
+or `Transaction Date` = ''
+or `Transaction Date` = 'UNKNOWN';
+
+update dirty_cafe_sales_stagging
+set `Transaction Date` = str_to_date(`Transaction Date`, '%Y-%m-%d');
+
+alter table dirty_cafe_sales_stagging
+modify `Transaction Date` date;
+-- 3.
+update dirty_cafe_sales_stagging
+set `Total Spent` = null
+where `Total Spent` not REGEXP '^[0-9]+\\.[0-9]+$';
+
+alter table dirty_cafe_sales_stagging
+modify `Total Spent` float;
+
+update dirty_cafe_sales_stagging
+set `Total Spent` = Quantity * `Price Per Unit`
+where `Total Spent` is null;
+										</code></pre>
+									</div>
 									<div class="content">
 										<div class="inner">
 											<header class="major">
-												<h3>Sed nunc ligula</h3>
+												<h3>Standardizing Data</h3>
 											</header>
-											<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
-											<ul class="actions">
-												<li><a href="generic.html" class="button">Learn more</a></li>
-											</ul>
+											<p>1. Trim the leading and/or trailing whitespaces from all the columns</p>
+											<p>2. Changed all the faulty 'Transaction Date' fields to 'null' values
+												and changed the data type from 'text' to 'date' for future usability.
+											</p>
+											<p>3. Changed every value that wasn't in the Regex pattern to a null value and 
+												then changed the changed the 'Total Spent' from a 'text' to 'float' data 
+												type for future usability. And Calculated the null values since the all the 
+												data for Calculating the field is given.
+											</p>
+											<p>4. I also handeled all the null values for the rest of the columns. 
+												Getting rid of non-related columns is also possible but not needed.
+											</p>
+											
 										</div>
 									</div>
 								</section>

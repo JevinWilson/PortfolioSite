@@ -91,6 +91,47 @@
     color: #ffffff;
 }
 
+/* For code snippets */
+.code-snippet {
+	flex: 1;
+	background: #2e3440;
+	border-radius: 8px;
+	overflow: hidden;
+	margin-right: 2em;
+}
+
+.code-snippet pre {
+	margin: 0;
+	padding: 1.5em;
+	background: transparent;
+	color: #d8dee9;
+	font-family: 'Courier New', Consolas, monospace;
+	font-size: 0.85em;
+	line-height: 1.4;
+	overflow-x: auto;
+}
+
+.code-snippet code {
+	background: transparent;
+	padding: 0;
+	border: none;
+}
+
+/* Syntax highlighting for SQL */
+.language-sql .keyword {
+	color: #81a1c1;
+	font-weight: bold;
+}
+
+.language-sql .string {
+	color: #a3be8c;
+}
+
+.language-sql .comment {
+	color: #616e88;
+	font-style: italic;
+}
+
 /* ========================================
    Responsive Design
    ======================================== */
@@ -126,4 +167,16 @@
         padding: 0.5em 0.25em;
         font-size: 0.85em;
     }
+}
+
+/* for code snippets */
+@media screen and (max-width: 980px) {
+	.spotlights > section {
+		flex-direction: column;
+	}
+	
+	.code-snippet {
+		margin-right: 0;
+		margin-bottom: 2em;
+	}
 }
