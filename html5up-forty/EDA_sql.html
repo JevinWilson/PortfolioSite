@@ -6,11 +6,12 @@
 -->
 <html>
 	<head>
-		<title>Landing - Forty by HTML5 UP</title>
+		<title>EDA</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="assets/css/custom.css" />
 	</head>
 	<body class="is-preload">
 
@@ -20,7 +21,7 @@
 				<!-- Header -->
 				<!-- Note: The "styleN" class below should match that of the banner element. -->
 					<header id="header" class="alt style2">
-						<a href="index.html" class="logo"><strong>Forty</strong> <span>by HTML5 UP</span></a>
+						<a href="index.html" class="logo"><strong>Home</strong> <span></span></a>
 						<nav>
 							<a href="#menu">Menu</a>
 						</nav>
@@ -48,11 +49,10 @@
 								<img src="images/pic07.jpg" alt="" />
 							</span>
 							<header class="major">
-								<h1>Landing</h1>
+								<h1>Exploritory Data Analysis</h1>
 							</header>
 							<div class="content">
-								<p>Lorem ipsum dolor sit amet nullam consequat<br />
-								sed veroeros. tempus adipiscing nulla.</p>
+								<p>Exploritory data analysis using SQL<br /></p>
 							</div>
 						</div>
 					</section>
@@ -64,147 +64,264 @@
 							<section id="one">
 								<div class="inner">
 									<header class="major">
-										<h2>Sed amet aliquam</h2>
+										<h2>The Data Set Used</h2> 
+										<a href="https://www.kaggle.com/datasets/urvishahir/electric-vehicle-specifications-dataset-2025" class="button">View Here</a>
 									</header>
-									<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna.</p>
+									<p>
+										The Electric Vehicle Specs Dataset (2025) provides a collection of specifications
+										and performance metrics for modern EVs.
+									</p>
+									
+									<table class="dataset-table">
+										<thead>
+											<tr>
+												<th>Column Name</th>
+												<th>Description</th>
+												<th>Data Type</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="Column-name">brand</td>
+												<td>Manufacturer of the Vehicle</td>
+												<td>text</td>
+											</tr>
+											<tr>
+												<td class="Column-name">model</td>
+												<td>Specific nameplate of the EV (Unique Identifier)</td>
+												<td>text</td>
+											</tr>
+											<tr>
+												<td class="Column-name">top_speed_kmh</td>
+												<td>Maximum speed of the vehicle (km/h)</td>
+												<td>int</td>
+											</tr>
+											<tr>
+												<td class="Column-name">battery_capacity_kWh</td>
+												<td>The gross energy capacity of the battery (kWh)</td>
+												<td>int</td>
+											</tr>
+											<tr>
+												<td class="Column-name">battery_type</td>
+												<td>Technical battery information</td>
+												<td>text</td>
+											</tr>
+											<tr>
+												<td class="Column-name">number_of_cells</td>
+												<td>Technical battery information</td>
+												<td>text</td>
+											</tr>
+											<tr>
+												<td class="Column-name">torque_nm</td>
+												<td>Maximum torque output</td>
+												<td>int</td>
+											</tr>
+											<tr>
+												<td class="Column-name">efficiency_wh_per_km</td>
+												<td>Power consumption rate of the vehicle (Wh/km)</td>
+												<td>int</td>
+											</tr>
+											<tr>
+												<td class="Column-name">range_km</td>
+												<td>Estimated driving range on a full charge (km)</td>
+												<td>int</td>
+											</tr>
+											<tr>
+												<td class="Column-name">acceleration_0_100_s</td>
+												<td>Time to reach 100 km/h from a standstill (sec)</td>
+												<td>double</td>
+											</tr>
+											<tr>
+												<td class="Column-name">fast_charging_power_kw_dc</td>
+												<td>Maximum supported DC fast-charging power (10-80%) (kW DC)</td>
+												<td>int</td>
+											</tr>
+											<tr>
+												<td class="Column-name">fast_charge_port</td>
+												<td>Connector standard (e.g., CCS, CHAdeMO)</td>
+												<td>text</td>
+											</tr>
+											<tr>
+												<td class="Column-name">towing_capacity_kg</td>
+												<td>Ability to tow loads (kg)</td>
+												<td>text</td>
+											</tr>
+											<tr>
+												<td class="Column-name">cargo_volume_l</td>
+												<td>Luggage space, sometimes approximate or expressed in alternative units (liter)</td>
+												<td>int</td>
+											</tr>
+											<tr>
+												<td class="Column-name">seats</td>
+												<td>Total seating capacity</td>
+												<td>int</td>
+											</tr>
+											<tr>
+												<td class="Column-name">drivetrain</td>
+												<td>Powertrain configuration (e.g., AWD, RWD, FWD)</td>
+												<td>text</td>
+											</tr>
+											<tr>
+												<td class="Column-name">segment</td>
+												<td>Vehicle segment (e.g., compact, midsize, executive)</td>
+												<td>text</td>
+											</tr>
+											<tr>
+												<td class="Column-name">length_mm</td>
+												<td>Physical footprint of the vehicle</td>
+												<td>int</td>
+											</tr>
+											<tr>
+												<td class="Column-name">width_mm</td>
+												<td>Physical footprint of the vehicle</td>
+												<td>int</td>
+											</tr>
+											<tr>
+												<td class="Column-name">height_mm</td>
+												<td>Physical footprint of the vehicle</td>
+												<td>int</td>
+											</tr>
+											<tr>
+												<td class="Column-name">car_body_type</td>
+												<td>Classification such as hatchback, SUV, sedan, etc</td>
+												<td>text</td>
+											</tr>
+											<tr>
+												<td class="Column-name">source_url</td>
+												<td>Reference link for each car (used in scraping)</td>
+												<td>text</td>
+											</tr>
+										</tbody>
+
+									</table>
+
 								</div>
 							</section>
 
 						<!-- Two -->
 							<section id="two" class="spotlights">
 								<section>
-									<a href="generic.html" class="image">
-										<img src="images/pic08.jpg" alt="" data-position="center center" />
-									</a>
+									<div class="code-snippet">
+										<pre><code>
+create table dirty_cafe_sales_stagging
+like dirty_cafe_sales;
+
+insert dirty_cafe_sales_stagging
+select *
+from dirty_cafe_sales;
+
+select * 
+from dirty_cafe_sales_stagging; 
+										</code></pre>
+									</div>
 									<div class="content">
 										<div class="inner">
 											<header class="major">
-												<h3>Orci maecenas</h3>
+												<h3>Create Stagging Table</h3>
 											</header>
-											<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
-											<ul class="actions">
-												<li><a href="generic.html" class="button">Learn more</a></li>
-											</ul>
+											<p>In this code snippet I created a copy of the table to edit and stage changes on 
+												to keep the original table/data safe.
+											</p>
 										</div>
 									</div>
 								</section>
 								<section>
-									<a href="generic.html" class="image">
-										<img src="images/pic09.jpg" alt="" data-position="top center" />
-									</a>
+									<div class="code-snippet">
+										<pre><code>
+with duplicate_cte as 
+(
+select *, 
+row_number() over(
+	partition by
+	`Transaction ID`, item, `Total Spent`, `Transaction Date`
+) as row_num
+from dirty_cafe_sales_stagging
+)
+select * 
+from duplicate_cte
+where row_num > 1;
+										</code></pre>
+									</div>
 									<div class="content">
 										<div class="inner">
 											<header class="major">
-												<h3>Rhoncus magna</h3>
+												<h3>Removing Duplicates</h3>
 											</header>
-											<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
-											<ul class="actions">
-												<li><a href="generic.html" class="button">Learn more</a></li>
-											</ul>
+											<p>In this code snippet I checked for duplicates. I created a CTE and partitioned over
+												'Transaction ID', 'item', 'Total Spent', and 'Transaction Date'. If 
+												any rows have the same values in all 4 columns it would increment the 'row_num'
+												column. I then filtered the output to show where 'row_num' is more than 1, 
+												showing a duplicate row, and if there was then I would remove it.
+											</p>
 										</div>
 									</div>
 								</section>
 								<section>
-									<a href="generic.html" class="image">
-										<img src="images/pic10.jpg" alt="" data-position="25% 25%" />
-									</a>
+									<div class="code-snippet">
+										<pre><code>
+-- 1. 
+update dirty_cafe_sales_stagging
+set `Transaction ID` = trim(`Transaction ID`),
+Item = trim(Item),
+`Price Per Unit`=trim(`Price Per Unit`),
+`Total Spent`=trim(`Total Spent`),
+`Payment Method`=trim(`Payment Method`),
+Location=trim(Location),
+`Transaction Date`=trim(`Transaction Date`);
+--2.
+update dirty_cafe_sales_stagging
+set `Transaction Date` = null 
+where `Transaction Date` = 'ERROR' 
+or `Transaction Date` = ''
+or `Transaction Date` = 'UNKNOWN';
+
+update dirty_cafe_sales_stagging
+set `Transaction Date` = str_to_date(`Transaction Date`, '%Y-%m-%d');
+
+alter table dirty_cafe_sales_stagging
+modify `Transaction Date` date;
+-- 3.
+update dirty_cafe_sales_stagging
+set `Total Spent` = null
+where `Total Spent` not REGEXP '^[0-9]+\\.[0-9]+$';
+
+alter table dirty_cafe_sales_stagging
+modify `Total Spent` float;
+
+update dirty_cafe_sales_stagging
+set `Total Spent` = Quantity * `Price Per Unit`
+where `Total Spent` is null;
+										</code></pre>
+									</div>
 									<div class="content">
 										<div class="inner">
 											<header class="major">
-												<h3>Sed nunc ligula</h3>
+												<h3>Standardizing Data</h3>
 											</header>
-											<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
-											<ul class="actions">
-												<li><a href="generic.html" class="button">Learn more</a></li>
-											</ul>
+											<p>1. Trim the leading and/or trailing whitespaces from all the columns</p>
+											<p>2. Changed all the faulty 'Transaction Date' fields to 'null' values
+												and changed the data type from 'text' to 'date' for future usability.
+											</p>
+											<p>3. Changed every value that wasn't in the Regex pattern to a null value and 
+												then changed the changed the 'Total Spent' from a 'text' to 'float' data 
+												type for future usability. And Calculated the null values since the all the 
+												data for Calculating the field is given.
+											</p>
+											<p>4. I also handeled all the null values for the rest of the columns. 
+												Getting rid of non-related columns is also possible but not needed.
+											</p>
+											
 										</div>
 									</div>
 								</section>
 							</section>
 
-						<!-- Three -->
-							<section id="three">
-								<div class="inner">
-									<header class="major">
-										<h2>Massa libero</h2>
-									</header>
-									<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus.</p>
-									<ul class="actions">
-										<li><a href="generic.html" class="button next">Get Started</a></li>
-									</ul>
-								</div>
-							</section>
+						
 
 					</div>
 
-				<!-- Contact -->
-					<section id="contact">
-						<div class="inner">
-							<section>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<label for="name">Name</label>
-											<input type="text" name="name" id="name" />
-										</div>
-										<div class="field half">
-											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
-										</div>
-										<div class="field">
-											<label for="message">Message</label>
-											<textarea name="message" id="message" rows="6"></textarea>
-										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="primary" /></li>
-										<li><input type="reset" value="Clear" /></li>
-									</ul>
-								</form>
-							</section>
-							<section class="split">
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-envelope"></span>
-										<h3>Email</h3>
-										<a href="#">information@untitled.tld</a>
-									</div>
-								</section>
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-phone"></span>
-										<h3>Phone</h3>
-										<span>(000) 000-0000 x12387</span>
-									</div>
-								</section>
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-home"></span>
-										<h3>Address</h3>
-										<span>1234 Somewhere Road #5432<br />
-										Nashville, TN 00000<br />
-										United States of America</span>
-									</div>
-								</section>
-							</section>
-						</div>
-					</section>
+				
 
-				<!-- Footer -->
-					<footer id="footer">
-						<div class="inner">
-							<ul class="icons">
-								<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-								<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-							</ul>
-							<ul class="copyright">
-								<li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
-							</ul>
-						</div>
-					</footer>
 
 			</div>
 
