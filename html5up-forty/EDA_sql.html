@@ -35,10 +35,6 @@
 							<li><a href="generic.html">Generic</a></li>
 							<li><a href="elements.html">Elements</a></li>
 						</ul>
-						<ul class="actions stacked">
-							<li><a href="#" class="button primary fit">Get Started</a></li>
-							<li><a href="#" class="button fit">Log In</a></li>
-						</ul>
 					</nav>
 
 				<!-- Banner -->
@@ -52,10 +48,27 @@
 								<h1>Exploritory Data Analysis</h1>
 							</header>
 							<div class="content">
-								<p>Exploritory data analysis using SQL<br /></p>
+								<p>July 18, 2025</p>
+								<p>Exploritory data analysis using SQL</p>
 							</div>
 						</div>
 					</section>
+
+					<div id="main">
+						<section id="one">
+							<div class="inner">
+								<header class="major">
+									<h2>Objectives</h2>
+								</header>
+								<ul>
+									<li>Analyze market structure and brand positioning across EV segments</li>
+									<li>Examine performance trade-offs between efficiency, range, and acceleration</li>
+									<li>Evaluate charging infrastructure readiness and adoption patterns</li>
+									<li>Identify practical usage characteristics for different consumer needs</li>
+								</ul>
+							</div>
+						</section>
+					</div>
 
 				<!-- Main -->
 					<div id="main">
@@ -203,15 +216,12 @@
 								<section>
 									<div class="code-snippet">
 										<pre><code>
-create table dirty_cafe_sales_stagging
-like dirty_cafe_sales;
+create table electric_vehicles_spec_stagging
+like electric_vehicles_spec_2025;
 
-insert dirty_cafe_sales_stagging
+insert electric_vehicles_spec_stagging
 select *
-from dirty_cafe_sales;
-
-select * 
-from dirty_cafe_sales_stagging; 
+from electric_vehicles_spec_2025;
 										</code></pre>
 									</div>
 									<div class="content">
@@ -228,30 +238,29 @@ from dirty_cafe_sales_stagging;
 								<section>
 									<div class="code-snippet">
 										<pre><code>
-with duplicate_cte as 
-(
-select *, 
-row_number() over(
-	partition by
-	`Transaction ID`, item, `Total Spent`, `Transaction Date`
-) as row_num
-from dirty_cafe_sales_stagging
-)
-select * 
-from duplicate_cte
-where row_num > 1;
+-- most variety of electric vehicles by brand
+select brand, count(brand) as Number_of_electric_models
+from electric_vehicles_spec_stagging
+group by brand
+order by Number_of_electric_models desc;
+
+-- quickest EVs manufactured in 2025
+select brand, model, acceleration_0_100_s, car_body_type
+from electric_vehicles_spec_stagging
+order by acceleration_0_100_s asc;
 										</code></pre>
 									</div>
 									<div class="content">
 										<div class="inner">
 											<header class="major">
-												<h3>Removing Duplicates</h3>
+												<h3>Car Enthusiast Curiosity</h3>
 											</header>
-											<p>In this code snippet I checked for duplicates. I created a CTE and partitioned over
-												'Transaction ID', 'item', 'Total Spent', and 'Transaction Date'. If 
-												any rows have the same values in all 4 columns it would increment the 'row_num'
-												column. I then filtered the output to show where 'row_num' is more than 1, 
-												showing a duplicate row, and if there was then I would remove it.
+											<p>
+												The top German houses are dominating the EV space in terms of variety. 
+												Mercedes leads by quite a few with 41 models, followed by Audi with 27, and 
+												Porsche with 26. The German manufactures also dominate the market in terms of 
+												speed. The Porsche Taycan line has a few model that occupy the top spots within
+												2 hundreths of a second of eachother.  
 											</p>
 										</div>
 									</div>
@@ -259,58 +268,119 @@ where row_num > 1;
 								<section>
 									<div class="code-snippet">
 										<pre><code>
--- 1. 
-update dirty_cafe_sales_stagging
-set `Transaction ID` = trim(`Transaction ID`),
-Item = trim(Item),
-`Price Per Unit`=trim(`Price Per Unit`),
-`Total Spent`=trim(`Total Spent`),
-`Payment Method`=trim(`Payment Method`),
-Location=trim(Location),
-`Transaction Date`=trim(`Transaction Date`);
---2.
-update dirty_cafe_sales_stagging
-set `Transaction Date` = null 
-where `Transaction Date` = 'ERROR' 
-or `Transaction Date` = ''
-or `Transaction Date` = 'UNKNOWN';
-
-update dirty_cafe_sales_stagging
-set `Transaction Date` = str_to_date(`Transaction Date`, '%Y-%m-%d');
-
-alter table dirty_cafe_sales_stagging
-modify `Transaction Date` date;
--- 3.
-update dirty_cafe_sales_stagging
-set `Total Spent` = null
-where `Total Spent` not REGEXP '^[0-9]+\\.[0-9]+$';
-
-alter table dirty_cafe_sales_stagging
-modify `Total Spent` float;
-
-update dirty_cafe_sales_stagging
-set `Total Spent` = Quantity * `Price Per Unit`
-where `Total Spent` is null;
+select 
+    segment,
+    count(*) as total_models,
+    count(distinct brand) as brands_in_segment,
+    round(avg(battery_capacity_kWh), 1) as avg_battery_size,
+    round(avg(range_km), 0) as avg_range,
+    group_concat(distinct brand order by brand) as brands_list
+from electric_vehicles_spec_stagging
+where segment is not null
+group by segment
+order by total_models desc;
 										</code></pre>
 									</div>
 									<div class="content">
 										<div class="inner">
 											<header class="major">
-												<h3>Standardizing Data</h3>
+												<h3>How is the EV market structured across different segments?</h3>
 											</header>
-											<p>1. Trim the leading and/or trailing whitespaces from all the columns</p>
-											<p>2. Changed all the faulty 'Transaction Date' fields to 'null' values
-												and changed the data type from 'text' to 'date' for future usability.
+											<p>
+												Using the dataset we can see that "larger" vehicles dominate the most popular
+												vehicle segment manufactured in 2025 with the top 5 being medium sized SUVs, larger
+												sized SUVs, full sized luxury, passenger vans, and smaller sized SUVs.
+												After the larger vehicles there is a noticable drop of almost 30% to the
+												rest of the vehicle segments. But this doesn't tell the whole story of the
+												most popular vehicles segments due to not having sales data.
 											</p>
-											<p>3. Changed every value that wasn't in the Regex pattern to a null value and 
-												then changed the changed the 'Total Spent' from a 'text' to 'float' data 
-												type for future usability. And Calculated the null values since the all the 
-												data for Calculating the field is given.
+										</div>
+									</div>
+								</section>
+								<section>
+									<div class="code-snippet">
+										<pre><code>
+select drivetrain, count(*) as model_count, round(avg(efficiency_wh_per_km),0) as avg_efficiency,
+round(avg(range_km)) as avg_range, round(avg(acceleration_0_100_s)) as avg_accel, 
+round(avg(torque_nm),0) as avg_torque, round(avg(battery_capacity_kWh)) as battery_capacity
+from electric_vehicles_spec_stagging
+group by drivetrain
+order by avg_efficiency asc;
+
+/*
+1. FWD is the most efficienct with an avg of 153 Wh/km, but the lowest
+avg range of 299 km, slowest avg acceleration of 10 seconds, lowest 
+avg torque or 271 NM, and the lowest avg battery capacity of 
+56 kWh.
+
+2. RWD has an average efficiency of 157 Wh/km, avg range of 417 km,
+avg acceleration of 7 seconds, avg battery capacity of 75 kWh,
+and an avg torque of 420 NM.
+
+3. AWD is least efficienct with an avg of 175 Wh/km, highest
+avg range of 451 km, fastest avg acceleration of 5 seconds, 
+highest avg battery capacity 88 kWh, and the highest 
+avg torque of 740 NM.
+*/
+										</code></pre>
+									</div>
+									<div class="content">
+										<div class="inner">
+											<header class="major">
+												<h3>How do different drivetrains compare in real life efficiency?</h3>
+											</header>
+											<p>
+												It is not surprising for FWD to be the most efficienct due to FWD having a 
+												history of being a cheaper consumer option with cheaper and lighter materials
+												used. You would think that they would have the most range due to being the
+												most efficienct but they have the lowest avg battery capacity. I think it
+												is due to my point earlier that FWD vehicles are mainly mostly known to be 
+												consumer affordable options and manufactures cheap out on the battery for 
+												them. It is also no surprise to see FWD vehicles being the worse on all 
+												performance metrics due to its inferior weight transfer, handling/cornering,
+												balance, etc, automaker don't tend to make FWD vehicles with performance
+												in mind.
 											</p>
-											<p>4. I also handeled all the null values for the rest of the columns. 
-												Getting rid of non-related columns is also possible but not needed.
+										</div>
+									</div>
+								</section>
+								<section>
+									<div class="code-snippet">
+										<pre><code>
+with battery_efficiency as (
+	select 
+		case
+			when battery_capacity_kWh < 50 then 'small'
+            when battery_capacity_kWh < 75 then 'medium'
+            when battery_capacity_kWh < 100 then 'large'
+            else 'more than 100'
+		end as battery_category,
+        battery_capacity_kWh, efficiency_wh_per_km, range_km, car_body_type
+	from electric_vehicles_spec_stagging
+    where battery_capacity_kWh is not null and efficiency_wh_per_km is not null
+)
+select battery_category, count(*) as vehicle_count, round(avg(battery_capacity_kWh),1) as avg_battery_size,
+round(avg(efficiency_wh_per_km)) as avg_efficiency, round(avg(range_km)) as avg_range
+from battery_efficiency
+group by battery_category
+order by avg_battery_size;
+
+										</code></pre>
+									</div>
+									<div class="content">
+										<div class="inner">
+											<header class="major">
+												<h3>Do bigger batteries mean less effective power units?</h3>
+											</header>
+											<p>
+												As the battery size increases the avgerage efficiency gets worse as well as 
+												the range. So yes, according to our dataset a bigger battery means less
+												efficiency. I wouldn't say a less effective power unit because there are 
+												other metrics and factors not available in the dataset that would be needed. 
+												One of the main and obvious reason I can think of why this is, is simply 
+												because manufactures try to offset the lower efficiency with a larger 
+												battery capacity.
 											</p>
-											
 										</div>
 									</div>
 								</section>
