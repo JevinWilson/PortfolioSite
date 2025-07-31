@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Resume - Jevin's Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="assets/css/custom.css" />
+		<style>
+
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo"><strong>Home</strong> <span></span></a>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="resume.html">Resume</a></li>
+                            <li><a href="index.html#one">Projects</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main" class="alt">
+
+						<!-- One -->
+							<section id="one">
+								<div class="inner">
+									<header class="major">
+										<h1>My Resume</h1>
+									</header>
+									
+									<!-- Download Section -->
+									<div class="download-section">
+										<a href="assets/resume/JevinsResume.pdf" class="download-button" download>
+											<i class="fas fa-download"></i> Download PDF
+										</a>
+										<a href="assets/resume/JevinsResume.pdf" class="download-button" target="_blank">
+											<i class="fas fa-external-link-alt"></i> Open in New Tab
+										</a>
+									</div>
+
+									<!-- PDF Embed Container -->
+									<div class="pdf-container">
+										<embed src="assets/resume/JevinsResume.pdf" type="application/pdf" class="pdf-embed">
+									</div>
+
+									<!-- Fallback for browsers that don't support PDF embedding -->
+									<div class="resume-fallback" style="display: none;">
+										<h3>PDF Viewer Not Supported</h3>
+										<p>Your browser doesn't support embedded PDFs. Please use one of the buttons above to download or view the resume.</p>
+									</div>
+
+									
+
+								</div>
+							</section>
+
+					</div>
+
+				
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<ul class="copyright">
+								<li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+			<!-- PDF embed fallback script -->
+			<script>
+				// Check if PDF is supported and show fallback if needed
+				setTimeout(function() {
+					var embed = document.querySelector('.pdf-embed');
+					var fallback = document.querySelector('.resume-fallback');
+					
+					if (embed && embed.offsetHeight < 100) {
+						fallback.style.display = 'block';
+					}
+				}, 2000);
+			</script>
+
+	</body>
+</html>
