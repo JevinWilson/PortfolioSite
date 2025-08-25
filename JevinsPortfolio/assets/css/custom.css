@@ -479,10 +479,29 @@
         word-wrap: break-word;
         overflow-wrap: break-word;
         hyphens: auto;
+        line-height: 1.4;
+    }
+    
+    /* Specific fix for content headers */
+    .content .inner h3 {
+        line-height: 1.4;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        font-size: 1.1em;
     }
     
     p, li {
         word-wrap: break-word;
         overflow-wrap: break-word;
+    }
+}
+
+/* Extra small screens - further header adjustments */
+@media screen and (max-width: 480px) {
+    .content .inner h3 {
+        font-size: 1.05em;
+        line-height: 1.3;
+        margin-bottom: 0.75em;
     }
 }
