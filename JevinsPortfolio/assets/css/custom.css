@@ -59,13 +59,22 @@
 }
 
 /* Dataset Description Table */
-
 .dataset-table {
     width: 100%;
     margin: 2em 0;
     border-collapse: collapse;
     background-color: rgba(244, 244, 255, 0.02);
     border: 1px solid rgba(212, 212, 255, 0.1);
+    overflow-x: auto;
+    display: block;
+    white-space: nowrap;
+}
+
+.dataset-table tbody,
+.dataset-table thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 }
 
 .dataset-table th,
@@ -74,6 +83,9 @@
     text-align: left;
     border-bottom: 1px solid rgba(212, 212, 255, 0.1);
     color: rgba(244, 244, 255, 0.9);
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .dataset-table th {
@@ -98,6 +110,7 @@
 	border-radius: 8px;
 	overflow: hidden;
 	margin-right: 2em;
+	min-width: 0; /* Allows flex item to shrink */
 }
 
 .code-snippet pre {
@@ -109,6 +122,8 @@
 	font-size: 0.85em;
 	line-height: 1.4;
 	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
 }
 
 .code-snippet code {
@@ -179,15 +194,150 @@
     margin: 2em 0;
 }
 
+/* Chart Styles - Enhanced for responsiveness */
+#salary-chart-container {
+    flex: 1;
+    margin-right: 2em;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.experience-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.experience-btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    background-color: rgba(212, 212, 255, 0.1);
+    color: #d8dee9;
+    font-weight: 400;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    min-width: 0;
+}
+
+.experience-btn.active {
+    background-color: #9bf1ff;
+    color: #242943;
+    font-weight: 600;
+}
+
+.experience-btn:hover:not(.active) {
+    background-color: rgba(212, 212, 255, 0.2);
+}
+
+/* Chart Toggle Buttons */
+.chart-toggle-btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    background-color: rgba(212, 212, 255, 0.1);
+    color: #d8dee9;
+    font-weight: 400;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.chart-toggle-btn.active {
+    background-color: #9bf1ff;
+    color: #242943;
+    font-weight: 600;
+}
+
+.chart-toggle-btn:hover:not(.active) {
+    background-color: rgba(212, 212, 255, 0.2);
+}
+
+/* Job title controls responsive design */
+#jobtitle-controls label {
+    display: inline-block;
+    margin-bottom: 5px;
+    min-width: 60px;
+}
+
+#jobtitle-controls select {
+    width: 100%;
+    max-width: 200px;
+    min-width: 150px;
+}
+
+/* Chart container responsive adjustments */
+#salaryChart {
+    max-width: 100%;
+    height: auto !important;
+}
+
 /* ========================================
    Responsive Design
    ======================================== */
+
+/* Large tablets and small laptops */
+@media screen and (max-width: 1200px) {
+    #salary-chart-container {
+        margin-right: 1em;
+    }
+    
+    .experience-buttons {
+        gap: 6px;
+    }
+    
+    .experience-btn {
+        padding: 6px 12px;
+        font-size: 0.85em;
+    }
+    
+    .chart-toggle-btn {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+}
 
 /* Tablet and smaller screens */
 @media screen and (max-width: 980px) {
     #contact-horizontal .inner {
         flex-direction: column;
         gap: 1.5em;
+    }
+    
+    /* Chart section becomes full width */
+    .spotlights > section {
+        flex-direction: column !important;
+    }
+    
+    #salary-chart-container {
+        margin-right: 0;
+        margin-bottom: 2em;
+        width: 100%;
+    }
+    
+    .code-snippet {
+        margin-right: 0;
+        margin-bottom: 2em;
+        width: 100%;
+    }
+    
+    .experience-buttons {
+        justify-content: center;
+        margin-bottom: 1em;
+    }
+    
+    /* Job title controls stack vertically on tablets */
+    #jobtitle-controls > div {
+        margin-bottom: 0.75em;
+    }
+    
+    #jobtitle-controls select {
+        max-width: none;
+        width: 100%;
     }
 }
 
@@ -199,11 +349,51 @@
     
     .dataset-table {
         font-size: 0.9em;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
     }
     
     .dataset-table th,
     .dataset-table td {
         padding: 0.75em 0.5em;
+        white-space: normal;
+    }
+    
+    /* Chart controls become more compact */
+    .experience-buttons {
+        gap: 4px;
+    }
+    
+    .experience-btn {
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+    
+    .chart-toggle-btn {
+        padding: 8px 12px;
+        font-size: 0.85em;
+    }
+    
+    /* Chart container adjustments for mobile */
+    #salary-chart-container > div[style*="height: 300px"] {
+        height: 250px !important;
+    }
+    
+    #jobtitle-controls label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    /* Text content adjustments */
+    .content .inner p {
+        line-height: 1.6;
+        margin-bottom: 1em;
+    }
+    
+    .content .inner ul li {
+        margin-bottom: 0.5em;
+        line-height: 1.5;
     }
 }
 
@@ -214,24 +404,85 @@
         padding: 0.5em 0.25em;
         font-size: 0.85em;
     }
+    
+    .experience-btn {
+        padding: 5px 8px;
+        font-size: 0.75em;
+        min-width: auto;
+    }
+    
+    .chart-toggle-btn {
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+    
+    /* Further reduce chart height on very small screens */
+    #salary-chart-container > div[style*="height: 300px"] {
+        height: 200px !important;
+    }
+    
+    /* Ensure text doesn't overflow */
+    .content .inner h3 {
+        font-size: 1.2em;
+        line-height: 1.3;
+        word-wrap: break-word;
+    }
+    
+    /* Stack toggle buttons vertically if needed */
+    .chart-toggle-btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 4px;
+    }
+    
+    div[style*="display: flex; justify-content: center; gap: 8px;"] {
+        flex-direction: column;
+        gap: 4px !important;
+    }
 }
 
-/* for code snippets */
-@media screen and (max-width: 980px) {
-	.spotlights > section {
-		flex-direction: column;
-	}
-	
-	.code-snippet {
-		margin-right: 0;
-		margin-bottom: 2em;
-	}
-}
-
-/* for Resume */
+/* Resume responsive adjustments */
 @media screen and (max-width: 768px) {
     .pdf-container {
         height: 60vh;
         min-height: 400px;
+    }
+}
+
+/* Ensure all flex containers are responsive */
+.spotlights > section {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 980px) {
+    .spotlights > section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .spotlights > section > * {
+        width: 100%;
+        margin-right: 0 !important;
+        margin-bottom: 1em;
+    }
+    
+    .spotlights > section > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* Additional fluid typography */
+@media screen and (max-width: 736px) {
+    h1, h2, h3, h4, h5, h6 {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    p, li {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 }
